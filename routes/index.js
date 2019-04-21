@@ -29,4 +29,34 @@ router.get('/preg1CADENAS', function(req, res) {
  });
 });
 
+
+//EJERCICIO 2 DE LA  PREGUNTA 1
+/*Dada una matriz rectangular de caracteres, agregue un borde de
+asteriscos (*).
+picture = ["abc","ded"]
+la salida debera ser
+["*****",
+"*abc*",
+"*ded*",
+"*****"] */
+router.post('/matrix', function(req, res){
+  var picture = req.body.picture.split(",");
+  var cad = new Array(0,0);
+  var asterisk = "";
+  for (let i=0; i<picture[0].length + 2; i++){
+    asterisk = asterisk + "*";
+    cad[0]   = asterisk;
+    cad[picture.length +1] = asterisk;
+  }
+  for (let j=1; j<picture.length + 1; j++){
+    cad[j]= "*" + picture[j-1] + "*";
+  }
+  res.status(200).json({
+    msn: cad
+  });
+});
+
+
+
+
 module.exports = router;
